@@ -15,13 +15,17 @@ pipeline {
         
         stage ("terraform init") {
             steps {
-                sh ('terraform init') 
+                sh 'terraform init -input=false'
+                sh 'terraform workspace select ${environment} || terraform workspace new ${environment}'
+
+                sh "terraform plan -input=false -out tfplan "
+                sh 'terraform show -no-color tfplan > tfplan.txt'
             }
         }
 
         stage ("terraform Action") {
             steps {
-                sh ('terraform apply -input=false') 
+                sh ('terraform apply -input=false tfplan') 
            }
         }
     }
