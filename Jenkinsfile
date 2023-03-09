@@ -9,12 +9,18 @@ pipeline {
           }
         }
         
-        stage ("terraform init") {
+        stage ("terraform init reconfig") {
             steps {
                 sh ('terraform init -reconfigure') 
             }
         }
         
+        stage ("terraform init") {
+            steps {
+                sh ('terraform init') 
+            }
+        }
+
         stage ("terraform Action") {
             steps {
                 sh ('terraform apply') 
