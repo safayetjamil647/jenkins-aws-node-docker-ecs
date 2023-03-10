@@ -21,9 +21,7 @@ function App() {
 
   return (
     <div className="App">
-      {!failureMessage && !successMessage ? 'Fetching...' : null}
-      {failureMessage ? failureMessage : null}
-      {successMessage ? successMessage : null}
+      <p>65559767-2025-4de7-8f37-b895c9fcd784</p>
     </div>
   );
 }
